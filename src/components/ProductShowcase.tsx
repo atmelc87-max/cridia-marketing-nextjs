@@ -15,28 +15,24 @@ export function ProductShowcase() {
       title: t("showcase.dashboard"),
       description: t("showcase.dashboardDesc"),
       image: "/screenshots/dashboard.png",
-      span: "md:col-span-2",
       fallback: "from-blue-500 to-purple-500",
     },
     {
       title: t("showcase.cvAnalysis"),
       description: t("showcase.cvAnalysisDesc"),
       image: "/screenshots/cv-analysis.png",
-      span: "md:col-span-1",
       fallback: "from-purple-500 to-pink-500",
     },
     {
       title: t("showcase.interviewSetup"),
       description: t("showcase.interviewSetupDesc"),
       image: "/screenshots/interview-setup.png",
-      span: "md:col-span-1",
       fallback: "from-green-500 to-cyan-500",
     },
     {
       title: t("showcase.reports"),
       description: t("showcase.reportsDesc"),
       image: "/screenshots/interview-report.png",
-      span: "md:col-span-2",
       fallback: "from-orange-500 to-red-500",
     },
   ];
@@ -51,12 +47,12 @@ export function ProductShowcase() {
           {t("showcase.title")}
         </SectionTitle>
 
-        {/* Screenshot Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+        {/* Screenshot Grid - larger cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-16">
           {screenshots.map((screenshot, index) => (
             <motion.div
               key={index}
-              className={screenshot.span}
+              className="w-full" // Remove span classes, make all equal size
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -75,33 +71,21 @@ export function ProductShowcase() {
                   </div>
                 </div>
 
-                {/* Screenshot */}
-                <div className="relative aspect-video bg-gradient-to-br bg-obsidian rounded-b-xl overflow-hidden border-2 border-white/5">
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${screenshot.fallback} opacity-20`}
-                  />
+                {/* Screenshot - larger aspect ratio */}
+                <div className="relative aspect-[16/10] bg-obsidian rounded-b-xl overflow-hidden border-2 border-white/5">
+                  {/* Gradient background fallback */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${screenshot.fallback} opacity-20`} />
 
                   <Image
                     src={screenshot.image}
                     alt={screenshot.title}
                     fill
                     className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => {
-                      // Hide image if it fails to load, show gradient background instead
-                      e.currentTarget.style.display = "none";
-                    }}
+                    unoptimized
                   />
 
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-transparent to-transparent" />
-
-                  {/* Placeholder text if image doesn't load */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center p-8">
-                      <div className="text-4xl mb-2">📊</div>
-                      <div className="text-white/50 text-sm">Screenshot Preview</div>
-                    </div>
-                  </div>
+                  {/* Subtle gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-obsidian/40 via-transparent to-transparent" />
                 </div>
 
                 {/* Text */}

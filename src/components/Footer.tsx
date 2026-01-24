@@ -4,45 +4,74 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { getTranslation } from "@/lib/translations";
 
 export function Footer() {
   const pathname = usePathname();
   const router = useRouter();
   const { language } = useLanguage();
-  const t = (key: string) => getTranslation(language, key);
   const currentYear = new Date().getFullYear();
+
+  // Detect current language from pathname if context is not available
+  const currentLang =
+    pathname?.startsWith("/ar") ? "ar" : pathname?.startsWith("/en") ? "en" : language;
 
   const links = {
     product: [
-      { label: "Features", href: "#features" },
-      { label: "Pricing", href: "#pricing" },
-      { label: "How It Works", href: "#how-it-works" },
+      {
+        label: currentLang === "en" ? "Features" : "المميزات",
+        href: `/${currentLang}#features`,
+      },
+      {
+        label: currentLang === "en" ? "Pricing" : "الأسعار",
+        href: `/${currentLang}#pricing`,
+      },
+      {
+        label: currentLang === "en" ? "How It Works" : "كيف يعمل",
+        href: `/${currentLang}#how-it-works`,
+      },
     ],
     company: [
-      { label: "About", href: "#about" },
-      { label: "Contact", href: "#contact" },
-      { label: "Careers", href: "#" },
+      { label: currentLang === "en" ? "About" : "من نحن", href: "#" },
+      { label: currentLang === "en" ? "Contact" : "اتصل بنا", href: `/${currentLang}#contact` },
+      { label: currentLang === "en" ? "Careers" : "الوظائف", href: "#" },
     ],
     legal: [
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms of Service", href: "/terms" },
-      { label: "Cookie Policy", href: "/cookies" },
+      {
+        label: currentLang === "en" ? "Privacy Policy" : "سياسة الخصوصية",
+        href: `/${currentLang}/privacy`,
+      },
+      {
+        label: currentLang === "en" ? "Terms of Service" : "شروط الخدمة",
+        href: `/${currentLang}/terms`,
+      },
+      {
+        label: currentLang === "en" ? "Cookie Policy" : "سياسة ملفات تعريف الارتباط",
+        href: `/${currentLang}/cookies`,
+      },
     ],
   } as const;
 
-  const onHashLinkClick = (hashHref: `#${string}`) => (e: React.MouseEvent) => {
-    // If we are on home, smooth scroll
-    if (pathname === "/") {
+  const onMaybeAnchorClick = (href: string) => (e: React.MouseEvent) => {
+    if (!href.includes("#")) return;
+
+    const normalizedPath = pathname?.endsWith("/") ? pathname.slice(0, -1) : pathname;
+    const isHomePage = normalizedPath === `/${currentLang}`;
+
+    // If we're on homepage, smooth scroll instead of navigating
+    if (isHomePage) {
       e.preventDefault();
-      const id = hashHref.slice(1);
-      window.history.pushState(null, "", hashHref);
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      const hash = `#${href.split("#")[1] || ""}`;
+      if (hash.length > 1) {
+        window.history.pushState(null, "", hash);
+        document.querySelector(hash)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
       return;
     }
 
-    // Otherwise, navigate to home + hash
-    router.push(`/${hashHref}`);
+    // Otherwise, ensure we navigate to the correct language homepage + hash
+    e.preventDefault();
+    const hash = `#${href.split("#")[1] || ""}`;
+    router.push(`/${currentLang}${hash}`);
   };
 
   return (
@@ -61,26 +90,26 @@ export function Footer() {
               <span className="text-xl font-bold text-white">Cridia</span>
             </div>
             <p className="text-sm text-titanium/70">
-              {t("footer.tagline")}
+              {currentLang === "en"
+                ? "AI-powered recruitment platform for smarter hiring decisions."
+                : "منصة توظيف مدعومة بالذكاء الاصطناعي لقرارات توظيف أذكى."}
             </p>
           </div>
 
           {/* Product Links */}
           <div>
-            <h3 className="text-white font-semibold mb-4">{t("footer.product")}</h3>
+            <h3 className="text-white font-semibold mb-4">
+              {currentLang === "en" ? "Product" : "المنتج"}
+            </h3>
             <ul className="space-y-2">
               {links.product.map((link) => (
                 <li key={link.label}>
                   <Link
-                    href={pathname === "/" ? link.href : `/${link.href}`}
+                    href={link.href}
                     className="text-sm text-titanium/70 hover:text-white transition-colors"
-                    onClick={onHashLinkClick(link.href)}
+                    onClick={onMaybeAnchorClick(link.href)}
                   >
-                    {link.label === "Features"
-                      ? t("nav.features")
-                      : link.label === "Pricing"
-                        ? t("nav.pricing")
-                        : t("nav.howItWorks")}
+                    {link.label}
                   </Link>
                 </li>
               ))}
@@ -89,24 +118,18 @@ export function Footer() {
 
           {/* Company Links */}
           <div>
-            <h3 className="text-white font-semibold mb-4">{t("footer.company")}</h3>
+            <h3 className="text-white font-semibold mb-4">
+              {currentLang === "en" ? "Company" : "الشركة"}
+            </h3>
             <ul className="space-y-2">
               {links.company.map((link) => (
                 <li key={link.label}>
                   <Link
-                    href={link.href.startsWith("#") ? (pathname === "/" ? link.href : `/${link.href}`) : link.href}
+                    href={link.href}
                     className="text-sm text-titanium/70 hover:text-white transition-colors"
-                    onClick={
-                      link.href.startsWith("#")
-                        ? onHashLinkClick(link.href as `#${string}`)
-                        : undefined
-                    }
+                    onClick={onMaybeAnchorClick(link.href)}
                   >
-                    {link.label === "About"
-                      ? (language === "ar" ? "حول" : "About")
-                      : link.label === "Contact"
-                        ? t("nav.contact")
-                        : (language === "ar" ? "الوظائف" : "Careers")}
+                    {link.label}
                   </Link>
                 </li>
               ))}
@@ -115,7 +138,9 @@ export function Footer() {
 
           {/* Legal Links */}
           <div>
-            <h3 className="text-white font-semibold mb-4">{t("footer.legal")}</h3>
+            <h3 className="text-white font-semibold mb-4">
+              {currentLang === "en" ? "Legal" : "القانونية"}
+            </h3>
             <ul className="space-y-2">
               {links.legal.map((link) => (
                 <li key={link.label}>
@@ -123,11 +148,7 @@ export function Footer() {
                     href={link.href}
                     className="text-sm text-titanium/70 hover:text-white transition-colors"
                   >
-                    {link.label === "Privacy Policy"
-                      ? (language === "ar" ? "سياسة الخصوصية" : "Privacy Policy")
-                      : link.label === "Terms of Service"
-                        ? (language === "ar" ? "شروط الخدمة" : "Terms of Service")
-                        : (language === "ar" ? "سياسة ملفات تعريف الارتباط" : "Cookie Policy")}
+                    {link.label}
                   </Link>
                 </li>
               ))}
@@ -138,7 +159,10 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/5 pt-8 text-center">
           <p className="text-sm text-titanium/60">
-            © {currentYear} {t("footer.copyright")}
+            © {currentYear}{" "}
+            {currentLang === "en"
+              ? "Cridia Hire. All rights reserved."
+              : "كريديا هاير. جميع الحقوق محفوظة."}
           </p>
         </div>
       </div>

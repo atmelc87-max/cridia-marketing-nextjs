@@ -1,0 +1,10 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://cridia.ai/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+

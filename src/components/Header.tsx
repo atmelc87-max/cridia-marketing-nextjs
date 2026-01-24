@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { AnimatedButton } from "./ui/AnimatedButton";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -90,30 +91,29 @@ export function Header() {
       transition={{ duration: 0.6 }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center gap-4">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2 group">
+          <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
             <Image
               src="/cridia-logo-white.png"
               alt="Cridia Hire"
-              width={72}
-              height={72}
+              width={32}
+              height={32}
               className="transition-transform group-hover:scale-110"
               priority
             />
-            <span className="text-2xl font-bold text-white leading-none">
-              Cridia
-            </span>
-          </a>
+            <span className="text-xl font-bold text-white whitespace-nowrap">Cridia</span>
+          </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          {/* Desktop Navigation - show from lg breakpoint (1024px+) instead of md */}
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleNavClick(link.href, e)}
-                className="text-titanium hover:text-white transition-colors duration-200 cursor-pointer"
+                className="text-titanium hover:text-white transition-colors duration-200 cursor-pointer whitespace-nowrap"
               >
                 {link.label}
               </a>
@@ -124,7 +124,7 @@ export function Header() {
               <button
                 type="button"
                 onClick={() => handleLanguageChange("en")}
-                className={`px-3 py-1 rounded text-sm font-medium transition-all ${
+                className={`px-3 py-1 rounded text-sm font-medium transition-all whitespace-nowrap ${
                   language === "en"
                     ? "bg-gradient-tech text-white"
                     : "text-titanium hover:bg-white/5"
@@ -135,7 +135,7 @@ export function Header() {
               <button
                 type="button"
                 onClick={() => handleLanguageChange("ar")}
-                className={`px-3 py-1 rounded text-sm font-medium transition-all ${
+                className={`px-3 py-1 rounded text-sm font-medium transition-all whitespace-nowrap ${
                   language === "ar"
                     ? "bg-gradient-tech text-white"
                     : "text-titanium hover:bg-white/5"
@@ -146,7 +146,11 @@ export function Header() {
             </div>
 
             {/* CTA Button */}
-            <AnimatedButton href="https://hire.cridia.ai/register" variant="primary">
+            <AnimatedButton
+              href="https://hire.cridia.ai/register"
+              variant="primary"
+              className="whitespace-nowrap"
+            >
               {t("nav.startTrial")}
             </AnimatedButton>
           </nav>
@@ -154,7 +158,7 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             type="button"
-            className="md:hidden text-white"
+            className="lg:hidden text-white"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           >
@@ -165,7 +169,7 @@ export function Header() {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <motion.div
-            className="md:hidden mt-4 glass rounded-2xl p-4"
+            className="lg:hidden mt-4 glass rounded-2xl p-4"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}

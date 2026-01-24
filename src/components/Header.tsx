@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { AnimatedButton } from "./ui/AnimatedButton";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -18,7 +17,6 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
   const t = (key: string) => getTranslation(language, key);
-  const isLegalPage = pathname !== "/";
 
   const handleLanguageChange = (newLang: "en" | "ar") => {
     setLanguage(newLang);
@@ -45,26 +43,40 @@ export function Header() {
   }, []);
 
   const navLinks = [
-    { id: "features", label: t("nav.features") },
-    { id: "how-it-works", label: t("nav.howItWorks") },
-    { id: "pricing", label: t("nav.pricing") },
-    { id: "contact", label: t("nav.contact") },
+    { href: "#features", label: t("nav.features") },
+    { href: "#how-it-works", label: t("nav.howItWorks") },
+    { href: "#pricing", label: t("nav.pricing") },
+    { href: "#contact", label: t("nav.contact") },
   ] as const;
 
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
+  // Helper function to handle navigation
+  const handleNavClick = (href: string, e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
 
-  const onNavClick = (id: string) => (e: React.MouseEvent) => {
-    if (pathname === "/") {
-      e.preventDefault();
-      window.history.pushState(null, "", `#${id}`);
-      scrollToSection(id);
-      return;
+    // Get current language from pathname
+    const currentLang = pathname?.startsWith("/ar") ? "ar" : "en";
+    const normalizedPath = pathname?.endsWith("/") ? pathname.slice(0, -1) : pathname;
+
+    // If it's an anchor link (starts with #)
+    if (href.startsWith("#")) {
+      // Check if we're on the homepage
+      const isHomePage = normalizedPath === `/${currentLang}`;
+
+      if (isHomePage) {
+        // We're on homepage, just scroll to section
+        const element = document.querySelector(href);
+        if (element) element.scrollIntoView({ behavior: "smooth" });
+      } else {
+        // We're on another page, navigate to homepage with hash
+        router.push(`/${currentLang}${href}`);
+      }
+    } else {
+      // Regular link, navigate normally
+      router.push(href);
     }
 
-    router.push(`/#${id}`);
+    // Close mobile menu if open
+    setIsMobileMenuOpen(false);
   };
 
   return (
@@ -80,7 +92,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
+          <a href="/" className="flex items-center gap-2 group">
             <Image
               src="/cridia-logo-white.png"
               alt="Cridia Hire"
@@ -92,19 +104,19 @@ export function Header() {
             <span className="text-2xl font-bold text-white leading-none">
               Cridia
             </span>
-          </Link>
+          </a>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <Link
-                key={link.id}
-                href={pathname === "/" ? `#${link.id}` : `/#${link.id}`}
-                className="text-titanium hover:text-white transition-colors duration-200"
-                onClick={onNavClick(link.id)}
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={(e) => handleNavClick(link.href, e)}
+                className="text-titanium hover:text-white transition-colors duration-200 cursor-pointer"
               >
                 {link.label}
-              </Link>
+              </a>
             ))}
 
             {/* Language Toggle */}
@@ -160,17 +172,14 @@ export function Header() {
           >
             <nav className="flex flex-col gap-4">
               {navLinks.map((link) => (
-                <Link
-                  key={link.id}
-                  href={pathname === "/" ? `#${link.id}` : `/#${link.id}`}
-                  className="text-titanium hover:text-white transition-colors py-2"
-                  onClick={(e) => {
-                    onNavClick(link.id)(e);
-                    setIsMobileMenuOpen(false);
-                  }}
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(link.href, e)}
+                  className="text-titanium hover:text-white transition-colors py-2 cursor-pointer"
                 >
                   {link.label}
-                </Link>
+                </a>
               ))}
               <div className="flex gap-2 pt-2 border-t border-white/10">
                 <button

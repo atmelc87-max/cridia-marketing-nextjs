@@ -7,15 +7,25 @@ export default function RootRedirect() {
   const router = useRouter();
 
   useEffect(() => {
-    // Detect browser language
-    const browserLang = navigator.language || navigator.languages?.[0];
-    const isArabic = browserLang?.startsWith("ar");
-
-    // Check localStorage for saved preference
+    // Check localStorage first (user's previous choice)
     const savedLang = localStorage.getItem("language");
 
-    // Redirect to appropriate language
-    const targetLang = savedLang || (isArabic ? "ar" : "en");
+    if (savedLang === "en" || savedLang === "ar") {
+      router.replace(`/${savedLang}`);
+      return;
+    }
+
+    // Detect browser language
+    const browserLang = navigator.language || navigator.languages?.[0] || "en";
+
+    // Check if browser language starts with 'ar' (Arabic)
+    const isArabic = browserLang.toLowerCase().startsWith("ar");
+
+    // Default to English unless explicitly Arabic
+    const targetLang = isArabic ? "ar" : "en";
+
+    // Save choice and redirect
+    localStorage.setItem("language", targetLang);
     router.replace(`/${targetLang}`);
   }, [router]);
 

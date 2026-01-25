@@ -32,7 +32,15 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const headersList = await headers();
-  const lang = headersList.get('x-language') || 'en';
+  
+  // Try to get language from middleware header first
+  let lang = headersList.get('x-language');
+  
+  // Fallback: detect from pathname header if middleware header is missing
+  if (!lang) {
+    const pathname = headersList.get('x-pathname') || '';
+    lang = pathname.startsWith('/ar') ? 'ar' : 'en';
+  }
 
   return (
     <html lang={lang} dir={lang === 'ar' ? 'rtl' : 'ltr'}>

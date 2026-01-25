@@ -10,22 +10,44 @@ import { ContactSection } from "@/components/ContactSection";
 import { FinalCTA } from "@/components/FinalCTA";
 import { Footer } from "@/components/Footer";
 import { HomeClient } from "@/components/HomeClient";
-import { generateMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = generateMetadata(
-  {
+export const metadata: Metadata = {
+  title: "Cridia Hire - AI-Powered Recruitment Platform | Hire Smarter",
+  description:
+    "AI that screens 100 CVs in 5 minutes. Decimal precision scoring, bilingual interviews, and automated assessments. Join 127+ companies hiring smarter.",
+  alternates: {
+    canonical: "https://cridia.ai/",
+    languages: {
+      en: "https://cridia.ai/",
+      ar: "https://cridia.ai/ar/",
+    },
+  },
+  openGraph: {
     title: "Cridia Hire - AI-Powered Recruitment Platform | Hire Smarter",
     description:
       "AI that screens 100 CVs in 5 minutes. Decimal precision scoring, bilingual interviews, and automated assessments. Join 127+ companies hiring smarter.",
-    canonical: "/",
-    alternates: {
-      en: "/",
-      ar: "/ar",
-    },
+    url: "https://cridia.ai/",
+    siteName: "Cridia Hire",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "https://cridia.ai/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Cridia Hire - AI-Powered Recruitment Platform",
+      },
+    ],
   },
-  "en"
-);
+  twitter: {
+    card: "summary_large_image",
+    title: "Cridia Hire - AI-Powered Recruitment Platform | Hire Smarter",
+    description:
+      "AI that screens 100 CVs in 5 minutes. Decimal precision scoring, bilingual interviews, and automated assessments. Join 127+ companies hiring smarter.",
+    images: ["https://cridia.ai/og-image.png"],
+  },
+};
 
 export default function Home() {
   return (

@@ -41,7 +41,7 @@ export default function RootLayout({
               "@type": "Organization",
               name: "Cridia Hire",
               url: "https://cridia.ai",
-              logo: "https://cridia.ai/cridia-logo.png",
+              logo: "https://cridia.ai/cridia-icon.png",
               description: "AI-powered recruitment platform for smarter hiring decisions",
               address: {
                 "@type": "PostalAddress",

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cairo, Inter } from "next/font/google";
+import { headers } from "next/headers";
 import "./globals.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 
@@ -25,13 +26,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = await headers();
+  const lang = headersList.get('x-language') || 'en';
+
   return (
-    <html lang="en">
+    <html lang={lang} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
       <body className={`${inter.variable} ${cairo.variable} font-sans`}>
         <script
           type="application/ld+json"

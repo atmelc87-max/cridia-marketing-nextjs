@@ -20,6 +20,8 @@ export function Header() {
   const t = (key: string) => getTranslation(language, key);
 
   const handleLanguageChange = (newLang: "en" | "ar") => {
+    // Save language to localStorage first
+    localStorage.setItem("language", newLang);
     setLanguage(newLang);
     
     // Get current path without language prefix
@@ -38,6 +40,15 @@ export function Header() {
       router.push(`${currentPath || '/'}`);
     }
   };
+
+  // Sync language with pathname on mount and pathname changes
+  useEffect(() => {
+    const currentLang = pathname?.startsWith('/ar') ? 'ar' : 'en';
+    if (language !== currentLang) {
+      setLanguage(currentLang);
+      localStorage.setItem("language", currentLang);
+    }
+  }, [pathname, language, setLanguage]);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);

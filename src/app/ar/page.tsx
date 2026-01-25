@@ -11,6 +11,7 @@ import { PricingSection } from "@/components/PricingSection";
 import { ContactSection } from "@/components/ContactSection";
 import { FinalCTA } from "@/components/FinalCTA";
 import { Footer } from "@/components/Footer";
+import { ArClient } from "@/components/ArClient";
 
 export const metadata: Metadata = {
   title: "كريديا هاير - منصة توظيف مدعومة بالذكاء الاصطناعي",
@@ -19,19 +20,21 @@ export const metadata: Metadata = {
 
 export default function HomeAr() {
   return (
-    <main className="min-h-screen">
-      <Header />
-      <Hero />
-      <ProblemSection />
-      <SocialProof />
-      <SolutionSection />
-      <FeaturesSection />
-      <ProductShowcase />
-      <PricingSection />
-      <ContactSection />
-      <FinalCTA />
-      <Footer />
-    </main>
+    <ArClient>
+      <main className="min-h-screen">
+        <Header />
+        <Hero />
+        <ProblemSection />
+        <SocialProof />
+        <SolutionSection />
+        <FeaturesSection />
+        <ProductShowcase />
+        <PricingSection />
+        <ContactSection />
+        <FinalCTA />
+        <Footer />
+      </main>
+    </ArClient>
   );
 }
 

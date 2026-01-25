@@ -17,8 +17,11 @@ export const metadata: Metadata = {
   title: "Cridia Hire - AI-Powered Recruitment Platform",
   description: "Hire faster, better, smarter with AI that screens 100 CVs in 5 minutes",
   icons: {
-    icon: ["/favicon.ico", "/favicon.png"],
-    apple: ["/apple-touch-icon.png"],
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.png", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
   },
 };
 

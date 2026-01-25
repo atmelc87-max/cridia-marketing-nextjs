@@ -67,8 +67,8 @@ export function Footer() {
               <Image
                 src="/cridia-logo-white.png"
                 alt="Cridia Hire"
-                width={32}
-                height={32}
+                width={40}
+                height={40}
               />
               <span className="text-xl font-bold text-white">Cridia</span>
             </div>

@@ -5,18 +5,12 @@ export function middleware(request: NextRequest) {
   const response = NextResponse.next();
   const isArabic = request.nextUrl.pathname.startsWith('/ar');
   response.headers.set('x-language', isArabic ? 'ar' : 'en');
+  
+  console.log('Middleware running for:', request.nextUrl.pathname, '- Language:', isArabic ? 'ar' : 'en');
+  
   return response;
 }
 
 export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     */
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
-  ],
+  matcher: '/:path*',
 };

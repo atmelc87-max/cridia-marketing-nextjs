@@ -12,42 +12,23 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   // Detect current language from pathname if context is not available
-  const currentLang =
-    pathname?.startsWith("/ar") ? "ar" : pathname?.startsWith("/en") ? "en" : language;
+  const currentLang = pathname?.startsWith("/ar") ? "ar" : "en";
 
   const links = {
     product: [
-      {
-        label: currentLang === "en" ? "Features" : "المميزات",
-        href: `/${currentLang}#features`,
-      },
-      {
-        label: currentLang === "en" ? "Pricing" : "الأسعار",
-        href: `/${currentLang}#pricing`,
-      },
-      {
-        label: currentLang === "en" ? "How It Works" : "كيف يعمل",
-        href: `/${currentLang}#how-it-works`,
-      },
+      { label: currentLang === "en" ? "Features" : "المميزات", href: currentLang === 'ar' ? '/ar#features' : '/#features' },
+      { label: currentLang === "en" ? "Pricing" : "الأسعار", href: currentLang === 'ar' ? '/ar#pricing' : '/#pricing' },
+      { label: currentLang === "en" ? "How It Works" : "كيف يعمل", href: currentLang === 'ar' ? '/ar#how-it-works' : '/#how-it-works' },
     ],
     company: [
       { label: currentLang === "en" ? "About" : "من نحن", href: "#" },
-      { label: currentLang === "en" ? "Contact" : "اتصل بنا", href: `/${currentLang}#contact` },
+      { label: currentLang === "en" ? "Contact" : "اتصل بنا", href: currentLang === 'ar' ? '/ar#contact' : '/#contact' },
       { label: currentLang === "en" ? "Careers" : "الوظائف", href: "#" },
     ],
     legal: [
-      {
-        label: currentLang === "en" ? "Privacy Policy" : "سياسة الخصوصية",
-        href: `/${currentLang}/privacy`,
-      },
-      {
-        label: currentLang === "en" ? "Terms of Service" : "شروط الخدمة",
-        href: `/${currentLang}/terms`,
-      },
-      {
-        label: currentLang === "en" ? "Cookie Policy" : "سياسة ملفات تعريف الارتباط",
-        href: `/${currentLang}/cookies`,
-      },
+      { label: currentLang === "en" ? "Privacy Policy" : "سياسة الخصوصية", href: currentLang === 'ar' ? '/ar/privacy' : '/privacy' },
+      { label: currentLang === "en" ? "Terms of Service" : "شروط الخدمة", href: currentLang === 'ar' ? '/ar/terms' : '/terms' },
+      { label: currentLang === "en" ? "Cookie Policy" : "سياسة ملفات تعريف الارتباط", href: currentLang === 'ar' ? '/ar/cookies' : '/cookies' },
     ],
   } as const;
 
@@ -55,7 +36,9 @@ export function Footer() {
     if (!href.includes("#")) return;
 
     const normalizedPath = pathname?.endsWith("/") ? pathname.slice(0, -1) : pathname;
-    const isHomePage = normalizedPath === `/${currentLang}`;
+    const isHomePage = currentLang === 'ar' 
+      ? (normalizedPath === '/ar' || normalizedPath === '/ar/')
+      : (normalizedPath === '/' || !normalizedPath?.includes('/'));
 
     // If we're on homepage, smooth scroll instead of navigating
     if (isHomePage) {
@@ -71,7 +54,7 @@ export function Footer() {
     // Otherwise, ensure we navigate to the correct language homepage + hash
     e.preventDefault();
     const hash = `#${href.split("#")[1] || ""}`;
-    router.push(`/${currentLang}${hash}`);
+    router.push(currentLang === 'ar' ? `/ar${hash}` : `/${hash}`);
   };
 
   return (

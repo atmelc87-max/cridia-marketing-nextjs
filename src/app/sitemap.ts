@@ -11,12 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
-    },
-    {
-      url: `${baseUrl}/en`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
       alternates: {
         languages: {
           ar: `${baseUrl}/ar`,
@@ -30,12 +24,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
       alternates: {
         languages: {
-          en: `${baseUrl}/en`,
+          en: baseUrl,
         },
       },
     },
     {
-      url: `${baseUrl}/en/privacy`,
+      url: `${baseUrl}/privacy`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.5,
@@ -52,12 +46,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
       alternates: {
         languages: {
-          en: `${baseUrl}/en/privacy`,
+          en: `${baseUrl}/privacy`,
         },
       },
     },
     {
-      url: `${baseUrl}/en/terms`,
+      url: `${baseUrl}/terms`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.5,
@@ -74,12 +68,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
       alternates: {
         languages: {
-          en: `${baseUrl}/en/terms`,
+          en: `${baseUrl}/terms`,
         },
       },
     },
     {
-      url: `${baseUrl}/en/cookies`,
+      url: `${baseUrl}/cookies`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.5,
@@ -96,10 +90,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
       alternates: {
         languages: {
-          en: `${baseUrl}/en/cookies`,
+          en: `${baseUrl}/cookies`,
         },
       },
     },
   ];
 }
-

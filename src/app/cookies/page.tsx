@@ -4,10 +4,18 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getTranslation } from "@/lib/translations";
+import { useEffect } from "react";
 
 export default function CookiePolicy() {
-  const { language } = useLanguage();
+  const { language, setLanguage } = useLanguage();
   const t = (key: string) => getTranslation(language, key);
+
+  useEffect(() => {
+    const pathname = window.location.pathname;
+    if (!pathname.startsWith('/ar')) {
+      setLanguage("en");
+    }
+  }, [setLanguage]);
 
   const content = language === "en" ? {
     intro: {

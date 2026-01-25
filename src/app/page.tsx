@@ -1,41 +1,48 @@
-"use client";
+import { Header } from "@/components/Header";
+import { Hero } from "@/components/Hero";
+import { ProblemSection } from "@/components/ProblemSection";
+import { SocialProof } from "@/components/SocialProof";
+import { SolutionSection } from "@/components/SolutionSection";
+import { FeaturesSection } from "@/components/FeaturesSection";
+import { ProductShowcase } from "@/components/ProductShowcase";
+import { PricingSection } from "@/components/PricingSection";
+import { ContactSection } from "@/components/ContactSection";
+import { FinalCTA } from "@/components/FinalCTA";
+import { Footer } from "@/components/Footer";
+import { HomeClient } from "@/components/HomeClient";
+import { generateMetadata } from "@/lib/metadata";
+import type { Metadata } from "next";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+export const metadata: Metadata = generateMetadata(
+  {
+    title: "Cridia Hire - AI-Powered Recruitment Platform | Hire Smarter",
+    description:
+      "AI that screens 100 CVs in 5 minutes. Decimal precision scoring, bilingual interviews, and automated assessments. Join 127+ companies hiring smarter.",
+    canonical: "/",
+    alternates: {
+      en: "/",
+      ar: "/ar",
+    },
+  },
+  "en"
+);
 
-export default function RootRedirect() {
-  const router = useRouter();
-
-  useEffect(() => {
-    // Check localStorage first (user's previous choice)
-    const savedLang = localStorage.getItem("language");
-
-    if (savedLang === "en" || savedLang === "ar") {
-      router.replace(`/${savedLang}`);
-      return;
-    }
-
-    // Detect browser language
-    const browserLang = navigator.language || navigator.languages?.[0] || "en";
-
-    // Check if browser language starts with 'ar' (Arabic)
-    const isArabic = browserLang.toLowerCase().startsWith("ar");
-
-    // Default to English unless explicitly Arabic
-    const targetLang = isArabic ? "ar" : "en";
-
-    // Save choice and redirect
-    localStorage.setItem("language", targetLang);
-    router.replace(`/${targetLang}`);
-  }, [router]);
-
-  // Loading state while redirecting
+export default function Home() {
   return (
-    <div className="min-h-screen bg-obsidian flex items-center justify-center">
-      <div className="text-center">
-        <div className="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-        <p className="text-titanium">Loading...</p>
-      </div>
-    </div>
+    <HomeClient>
+      <main className="min-h-screen">
+        <Header />
+        <Hero />
+        <ProblemSection />
+        <SocialProof />
+        <SolutionSection />
+        <FeaturesSection />
+        <ProductShowcase />
+        <PricingSection />
+        <ContactSection />
+        <FinalCTA />
+        <Footer />
+      </main>
+    </HomeClient>
   );
 }

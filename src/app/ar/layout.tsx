@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://cridia.ai/ar",
     languages: {
-      en: "https://cridia.ai/en",
+      en: "https://cridia.ai",
       ar: "https://cridia.ai/ar",
     },
   },

@@ -21,9 +21,22 @@ export function Header() {
 
   const handleLanguageChange = (newLang: "en" | "ar") => {
     setLanguage(newLang);
-
-    const currentPath = pathname?.replace(/^\/(en|ar)/, "") || "";
-    router.push(`/${newLang}${currentPath}`);
+    
+    // Get current path without language prefix
+    let currentPath = '';
+    
+    if (pathname?.startsWith('/ar')) {
+      currentPath = pathname.replace(/^\/ar/, '');
+    } else {
+      currentPath = pathname || '';
+    }
+    
+    // Navigate to new language path
+    if (newLang === 'ar') {
+      router.push(`/ar${currentPath}`);
+    } else {
+      router.push(`${currentPath || '/'}`);
+    }
   };
 
   useEffect(() => {
@@ -53,30 +66,26 @@ export function Header() {
   // Helper function to handle navigation
   const handleNavClick = (href: string, e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-
-    // Get current language from pathname
-    const currentLang = pathname?.startsWith("/ar") ? "ar" : "en";
-    const normalizedPath = pathname?.endsWith("/") ? pathname.slice(0, -1) : pathname;
-
-    // If it's an anchor link (starts with #)
-    if (href.startsWith("#")) {
-      // Check if we're on the homepage
-      const isHomePage = normalizedPath === `/${currentLang}`;
-
+    
+    const isArabic = pathname?.startsWith('/ar');
+    
+    if (href.startsWith('#')) {
+      const isHomePage = isArabic 
+        ? (pathname === '/ar' || pathname === '/ar/') 
+        : (pathname === '/' || !pathname?.includes('/'));
+      
       if (isHomePage) {
-        // We're on homepage, just scroll to section
         const element = document.querySelector(href);
-        if (element) element.scrollIntoView({ behavior: "smooth" });
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
       } else {
-        // We're on another page, navigate to homepage with hash
-        router.push(`/${currentLang}${href}`);
+        router.push(isArabic ? `/ar${href}` : `/${href}`);
       }
     } else {
-      // Regular link, navigate normally
       router.push(href);
     }
-
-    // Close mobile menu if open
+    
     setIsMobileMenuOpen(false);
   };
 

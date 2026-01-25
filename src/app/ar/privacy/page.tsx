@@ -9,7 +9,7 @@ export const metadata: Metadata = generateMetadata(
       "تعرف على كيفية جمع كريديا هاير لبياناتك واستخدامها وتخزينها وحمايتها عند استخدام منصتنا للتوظيف بالذكاء الاصطناعي.",
     canonical: "/ar/privacy",
     alternates: {
-      en: "/en/privacy",
+      en: "/privacy",
       ar: "/ar/privacy",
     },
   },

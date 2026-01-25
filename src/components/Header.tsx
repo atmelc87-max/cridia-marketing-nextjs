@@ -104,7 +104,7 @@ export function Header() {
     <motion.header
       ref={headerRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "glass py-2.5" : "bg-transparent py-3.5"
+        isScrolled ? "glass py-2" : "bg-transparent py-3"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -117,8 +117,8 @@ export function Header() {
             <Image
               src="/cridia-logo-white.png"
               alt="Cridia Hire"
-              width={44}
-              height={44}
+              width={48}
+              height={48}
               className="transition-transform group-hover:scale-110"
               priority
             />

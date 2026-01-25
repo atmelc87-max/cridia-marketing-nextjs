@@ -14,14 +14,34 @@ const cairo = Cairo({
 });
 
 export const metadata: Metadata = {
-  title: "كريديا هاير - منصة توظيف مدعومة بالذكاء الاصطناعي",
-  description: "وظّف أسرع وأفضل بذكاء اصطناعي يفحص 100 سيرة ذاتية خلال 5 دقائق",
+  title: "كريديا للتوظيف - منصة توظيف بالذكاء الاصطناعي للشركات العربية",
+  description: "منصة توظيف ذكية بأسعار معقولة مع دعم كامل للهجات العربية. إجراء مقابلات آلية بالعربي والإنجليزي بتكلفة أقل 90% من الحلول التقليدية.",
+  keywords: ["توظيف بالذكاء الاصطناعي", "نظام توظيف عربي", "برامج الموارد البشرية", "مقابلات عمل آلية", "اللهجة العراقية", "توظيف للشركات الصغيرة"],
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
       { url: "/favicon.png", type: "image/png" },
     ],
     apple: "/apple-touch-icon.png",
+  },
+  openGraph: {
+    title: "كريديا للتوظيف - توظيف ذكي للشركات العربية",
+    description: "مقابلات آلية بالذكاء الاصطناعي مع دعم اللهجات العربية",
+    url: "https://cridia.ai/ar",
+    siteName: "كريديا للتوظيف",
+    locale: "ar_SA",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "كريديا للتوظيف - منصة توظيف ذكية",
+    description: "توظيف آلي بدعم اللهجات العربية",
+  },
+  alternates: {
+    canonical: "https://cridia.ai/ar",
+    languages: {
+      en: "https://cridia.ai",
+    },
   },
 };
 
@@ -57,6 +77,33 @@ export default function ArLayout({
                 email: "info@cridi.ai",
                 contactType: "Customer Service",
                 availableLanguage: ["English", "Arabic"],
+              },
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              name: "كريديا للتوظيف",
+              applicationCategory: "BusinessApplication",
+              operatingSystem: "Web Browser",
+              description: "منصة توظيف بالذكاء الاصطناعي مع دعم اللهجات العربية للشركات الصغيرة والمتوسطة",
+              inLanguage: "ar",
+              offers: {
+                "@type": "Offer",
+                priceCurrency: "USD",
+                description: "حلول توظيف بأسعار معقولة",
+              },
+              audience: {
+                "@type": "Audience",
+                audienceType: "الشركات الصغيرة والمتوسطة",
+                geographicArea: {
+                  "@type": "Place",
+                  name: "الشرق الأوسط وشمال أفريقيا",
+                },
               },
             }),
           }}

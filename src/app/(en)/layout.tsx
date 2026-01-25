@@ -14,14 +14,34 @@ const cairo = Cairo({
 });
 
 export const metadata: Metadata = {
-  title: "Cridia Hire - AI-Powered Recruitment Platform",
-  description: "Hire faster, better, smarter with AI that screens 100 CVs in 5 minutes",
+  title: "Cridia Hire - AI Recruitment Platform for MENA SMEs",
+  description: "Affordable AI-powered recruitment with native Arabic dialect support. Conduct automated interviews in English & Arabic at 90% lower cost than enterprise solutions.",
+  keywords: ["AI recruitment", "Arabic hiring platform", "MENA recruitment software", "affordable ATS", "Iraqi accent AI", "automated interviews", "SME recruitment"],
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
       { url: "/favicon.png", type: "image/png" },
     ],
     apple: "/apple-touch-icon.png",
+  },
+  openGraph: {
+    title: "Cridia Hire - AI Recruitment for MENA",
+    description: "Automated hiring with bilingual Arabic/English support",
+    url: "https://cridia.ai",
+    siteName: "Cridia Hire",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cridia Hire - AI Recruitment Platform",
+    description: "Affordable recruitment with Arabic dialect support",
+  },
+  alternates: {
+    canonical: "https://cridia.ai",
+    languages: {
+      ar: "https://cridia.ai/ar",
+    },
   },
 };
 
@@ -57,6 +77,32 @@ export default function EnLayout({
                 email: "info@cridi.ai",
                 contactType: "Customer Service",
                 availableLanguage: ["English", "Arabic"],
+              },
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              name: "Cridia Hire",
+              applicationCategory: "BusinessApplication",
+              operatingSystem: "Web Browser",
+              description: "AI recruitment platform with Arabic dialect support for MENA SMEs",
+              offers: {
+                "@type": "Offer",
+                priceCurrency: "USD",
+                description: "Affordable recruitment automation",
+              },
+              audience: {
+                "@type": "Audience",
+                audienceType: "Small and Medium Businesses",
+                geographicArea: {
+                  "@type": "Place",
+                  name: "Middle East and North Africa",
+                },
               },
             }),
           }}

@@ -15,24 +15,28 @@ export function ProductShowcase() {
       title: t("showcase.dashboard"),
       description: t("showcase.dashboardDesc"),
       image: "/screenshots/dashboard.png",
+      alt: "Cridia Hire dashboard showing active job positions with candidate scoring and status indicators",
       fallback: "from-blue-500 to-purple-500",
     },
     {
       title: t("showcase.cvAnalysis"),
       description: t("showcase.cvAnalysisDesc"),
       image: "/screenshots/cv-analysis.png",
+      alt: "AI-powered CV analysis report showing decimal precision scores across technical skills and experience",
       fallback: "from-purple-500 to-pink-500",
     },
     {
       title: t("showcase.interviewSetup"),
       description: t("showcase.interviewSetupDesc"),
       image: "/screenshots/interview-setup.png",
+      alt: "Interview setup interface with AI-led, human-led, and self-service mode options",
       fallback: "from-green-500 to-cyan-500",
     },
     {
       title: t("showcase.reports"),
       description: t("showcase.reportsDesc"),
       image: "/screenshots/interview-report.png",
+      alt: "Detailed interview report with recommendation scores, communication ratings, and technical assessment",
       fallback: "from-orange-500 to-red-500",
     },
   ];
@@ -78,7 +82,7 @@ export function ProductShowcase() {
 
                   <Image
                     src={screenshot.image}
-                    alt={screenshot.title}
+                    alt={screenshot.alt}
                     fill
                     className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     unoptimized

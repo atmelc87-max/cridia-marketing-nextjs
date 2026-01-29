@@ -51,7 +51,6 @@ const plans = [
       "Dedicated Support",
       "Custom Training",
       "SLA Guarantee",
-      "White-label Option",
     ],
     gradient: "from-orange-500 to-red-500",
     popular: false,

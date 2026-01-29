@@ -39,7 +39,7 @@ export default function TermsOfService() {
       },
       {
         title: "4. Subscription and Payment",
-        content: "All plans include a 7-day free trial. After the trial:",
+        content: "All plans include a 14-day free trial. No credit card needed. After the trial:",
         list: [
           "Subscriptions are billed monthly in advance",
           "Payment is processed through Qi Card payment gateway",
@@ -106,7 +106,7 @@ export default function TermsOfService() {
       },
       {
         title: "4. الاشتراك والدفع",
-        content: "تتضمن جميع الخطط تجربة مجانية لمدة 7 أيام. بعد التجربة:",
+        content: "تتضمن جميع الخطط تجربة مجانية لمدة 14 يوم. لا حاجة لبطاقة ائتمان. بعد التجربة:",
         list: [
           "يتم إصدار فواتير الاشتراكات شهرياً مقدماً",
           "تتم معالجة الدفع من خلال بوابة الدفع Qi Card",

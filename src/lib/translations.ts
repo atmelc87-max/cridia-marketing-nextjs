@@ -116,7 +116,7 @@ export const translations = {
       vsManual: "vs. 15 hours manual work",
       annualSavings: "Annual savings (10 hires)",
       professionalPlan: "Professional plan",
-      trialInfo: "7-day free trial • Cancel anytime",
+      trialInfo: "14-day free trial • No credit card needed • Cancel anytime",
     },
     contact: {
       title: "Get in Touch",
@@ -277,7 +277,7 @@ export const translations = {
       vsManual: "مقابل 15 ساعة عمل يدوي",
       annualSavings: "التوفير السنوي (10 توظيفات)",
       professionalPlan: "الخطة الاحترافية",
-      trialInfo: "تجربة مجانية 7 أيام • يمكنك الإلغاء في أي وقت",
+      trialInfo: "تجربة مجانية 14 يوم • لا حاجة لبطاقة ائتمان • يمكنك الإلغاء في أي وقت",
     },
     contact: {
       title: "تواصل معنا",

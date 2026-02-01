@@ -6,6 +6,7 @@ export const translations = {
       pricing: "Pricing",
       contact: "Contact",
       startTrial: "Start Free Trial",
+      signIn: "Sign In",
     },
     hero: {
       headline: ["AI That Reads", "100 CVs Before", "Your Coffee Gets Cold"],
@@ -170,6 +171,7 @@ export const translations = {
       pricing: "الأسعار",
       contact: "اتصل بنا",
       startTrial: "ابدأ تجربة مجانية",
+      signIn: "تسجيل الدخول",
     },
     hero: {
       headline: ["ذكاء اصطناعي يقرأ", "100 سيرة ذاتية قبل", "أن تبرد قهوتك"],

@@ -165,6 +165,16 @@ export function Header() {
               </button>
             </div>
 
+            {/* Sign In Button */}
+            <a
+              href="https://hire.cridia.ai/login"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-titanium hover:text-white transition-colors duration-200 whitespace-nowrap px-4 py-2 rounded-lg hover:bg-white/5"
+            >
+              {t("nav.signIn")}
+            </a>
+
             {/* CTA Button */}
             <AnimatedButton
               href="https://hire.cridia.ai/register"
@@ -229,6 +239,15 @@ export function Header() {
                   AR
                 </button>
               </div>
+              <a
+                href="https://hire.cridia.ai/login"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-titanium hover:text-white transition-colors py-2 text-center rounded-lg hover:bg-white/5"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t("nav.signIn")}
+              </a>
               <AnimatedButton
                 href="https://hire.cridia.ai/register"
                 variant="primary"

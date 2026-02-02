@@ -145,6 +145,9 @@ export function PricingSection() {
                   >
                     {t("pricing.startTrial")}
                   </AnimatedButton>
+                  <p className="text-xs text-titanium/60 text-center mt-3">
+                    ✓ {t("pricing.noCreditCard")}
+                  </p>
                 </div>
 
                 {/* Gradient glow on hover */}

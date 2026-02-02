@@ -32,7 +32,7 @@ export function FinalCTA() {
             {t("finalCta.subtitle")}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
             <AnimatedButton
               href="https://hire.cridia.ai/register"
               variant="primary"
@@ -41,6 +41,10 @@ export function FinalCTA() {
               {t("finalCta.startTrial")}
             </AnimatedButton>
           </div>
+
+          <p className="text-sm text-titanium/60 mb-12">
+            ✓ {t("finalCta.noCreditCard")}
+          </p>
 
           {/* Trust badges */}
           <div className="flex flex-wrap justify-center gap-8 text-sm text-titanium/60">

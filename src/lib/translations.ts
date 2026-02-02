@@ -15,6 +15,7 @@ export const translations = {
       startTrial: "Start Free Trial",
       watchDemo: "Watch Demo",
       joinCompanies: "Join 127+ companies hiring smarter",
+      noCreditCard: "No credit card needed",
     },
     problem: {
       title: "Hiring is Broken. You Know It.",
@@ -96,6 +97,7 @@ export const translations = {
       reports: "Detailed Reports",
       reportsDesc: "Comprehensive assessments with actionable insights",
       cta: "Try it yourself — Start free trial →",
+      noCreditCard: "No credit card needed",
     },
     pricing: {
       title: "Pricing That Scales With You",
@@ -118,6 +120,7 @@ export const translations = {
       annualSavings: "Annual savings (10 hires)",
       professionalPlan: "Professional plan",
       trialInfo: "14-day free trial • No credit card needed • Cancel anytime",
+      noCreditCard: "No credit card needed",
     },
     contact: {
       title: "Get in Touch",
@@ -141,6 +144,7 @@ export const translations = {
       encryption: "Bank-level encryption",
       gdpr: "GDPR-compliant data handling",
       secure: "Secure payment via Qi Card",
+      noCreditCard: "No credit card needed",
     },
     footer: {
       tagline: "AI-powered recruitment platform for smarter hiring decisions.",
@@ -180,6 +184,7 @@ export const translations = {
       startTrial: "ابدأ تجربة مجانية",
       watchDemo: "شاهد العرض",
       joinCompanies: "انضم إلى 127+ شركة توظف بذكاء",
+      noCreditCard: "لا حاجة لبطاقة ائتمان",
     },
     problem: {
       title: "التوظيف معطل. أنت تعرف ذلك.",
@@ -258,6 +263,7 @@ export const translations = {
       reports: "تقارير مفصلة",
       reportsDesc: "تقييمات شاملة مع رؤى قابلة للتنفيذ",
       cta: "جربها بنفسك — ابدأ تجربة مجانية ←",
+      noCreditCard: "لا حاجة لبطاقة ائتمان",
     },
     pricing: {
       title: "أسعار تتناسب معك",
@@ -280,6 +286,7 @@ export const translations = {
       annualSavings: "التوفير السنوي (10 توظيفات)",
       professionalPlan: "الخطة الاحترافية",
       trialInfo: "تجربة مجانية 14 يوم • لا حاجة لبطاقة ائتمان • يمكنك الإلغاء في أي وقت",
+      noCreditCard: "لا حاجة لبطاقة ائتمان",
     },
     contact: {
       title: "تواصل معنا",
@@ -303,6 +310,7 @@ export const translations = {
       encryption: "تشفير بمستوى البنوك",
       gdpr: "معالجة بيانات متوافقة مع GDPR",
       secure: "دفع آمن عبر Qi Card",
+      noCreditCard: "لا حاجة لبطاقة ائتمان",
     },
     footer: {
       tagline: "منصة توظيف مدعومة بالذكاء الاصطناعي لقرارات توظيف أذكى.",

@@ -102,6 +102,16 @@ export function Hero() {
             </AnimatedButton>
           </motion.div>
 
+          {/* No credit card needed */}
+          <motion.p
+            className="text-sm text-titanium/60 mt-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 1.1 }}
+          >
+            ✓ {t("hero.noCreditCard")}
+          </motion.p>
+
           {/* Social proof */}
           <motion.div
             className="mt-12 flex items-center gap-6 text-sm text-titanium/60"

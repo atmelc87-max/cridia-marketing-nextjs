@@ -118,6 +118,9 @@ export function ProductShowcase() {
           >
             {t("showcase.cta")}
           </a>
+          <p className="text-sm text-titanium/60 mt-3">
+            ✓ {t("showcase.noCreditCard")}
+          </p>
         </motion.div>
       </div>
     </section>

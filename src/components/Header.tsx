@@ -139,29 +139,21 @@ export function Header() {
               </a>
             ))}
 
-            {/* Language Toggle */}
+            {/* Language Toggle - single flag showing the language to switch TO */}
             <div className="flex items-center gap-2 border-l border-white/10 pl-4">
               <button
                 type="button"
-                onClick={() => handleLanguageChange("en")}
-                className={`px-3 py-1 rounded text-sm font-medium transition-all whitespace-nowrap ${
-                  language === "en"
-                    ? "bg-gradient-tech text-white"
-                    : "text-titanium hover:bg-white/5"
-                }`}
+                onClick={() => handleLanguageChange(language === "en" ? "ar" : "en")}
+                className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 p-1.5 hover:bg-white/10 transition-all"
+                aria-label={language === "en" ? "Switch to Arabic" : "Switch to English"}
               >
-                EN
-              </button>
-              <button
-                type="button"
-                onClick={() => handleLanguageChange("ar")}
-                className={`px-3 py-1 rounded text-sm font-medium transition-all whitespace-nowrap ${
-                  language === "ar"
-                    ? "bg-gradient-tech text-white"
-                    : "text-titanium hover:bg-white/5"
-                }`}
-              >
-                AR
+                <Image
+                  src={language === "en" ? "/flag-sa.svg" : "/flag-us.svg"}
+                  alt={language === "en" ? "Arabic" : "English"}
+                  width={24}
+                  height={24}
+                  className="rounded-full shadow-sm"
+                />
               </button>
             </div>
 
@@ -213,28 +205,23 @@ export function Header() {
                   {link.label}
                 </a>
               ))}
-              <div className="flex gap-2 pt-2 border-t border-white/10">
+              <div className="flex items-center justify-center pt-2 border-t border-white/10">
                 <button
                   type="button"
-                  onClick={() => handleLanguageChange("en")}
-                  className={`flex-1 px-3 py-2 rounded text-sm font-medium transition-all ${
-                    language === "en"
-                      ? "bg-gradient-tech text-white"
-                      : "text-titanium bg-white/5"
-                  }`}
+                  onClick={() => {
+                    handleLanguageChange(language === "en" ? "ar" : "en");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-3 py-2 hover:bg-white/10 transition-all"
+                  aria-label={language === "en" ? "Switch to Arabic" : "Switch to English"}
                 >
-                  EN
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleLanguageChange("ar")}
-                  className={`flex-1 px-3 py-2 rounded text-sm font-medium transition-all ${
-                    language === "ar"
-                      ? "bg-gradient-tech text-white"
-                      : "text-titanium bg-white/5"
-                  }`}
-                >
-                  AR
+                  <Image
+                    src={language === "en" ? "/flag-sa.svg" : "/flag-us.svg"}
+                    alt={language === "en" ? "Arabic" : "English"}
+                    width={24}
+                    height={24}
+                    className="rounded-full shadow-sm"
+                  />
                 </button>
               </div>
               <a

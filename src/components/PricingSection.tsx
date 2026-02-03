@@ -45,9 +45,8 @@ const plans = [
     price: "$699",
     description: "For companies who hire 50+ annually",
     features: [
-      "Unlimited CVs",
-      "Unlimited Interviews",
-      "Unlimited Team",
+      "Everything in Professional, plus:",
+      "Unlimited usage (CVs, Interviews, Team)",
       "Dedicated Support",
       "Custom Training",
       "SLA Guarantee",

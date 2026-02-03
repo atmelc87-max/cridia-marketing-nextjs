@@ -29,7 +29,7 @@ const plans = [
     price: "$249",
     description: "For serious hiring at scale",
     features: [
-      "500 CVs/month",
+      "300 CVs/month",
       "100 Interviews",
       "10 Team Members",
       "Priority Support",

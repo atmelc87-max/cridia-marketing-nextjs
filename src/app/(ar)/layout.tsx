@@ -52,6 +52,20 @@ export default function ArLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl">
+      <head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-BDC51YE7Y3"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-BDC51YE7Y3');
+            `,
+          }}
+        />
+      </head>
       <body className={`${inter.variable} ${cairo.variable} font-sans`}>
         <script
           type="application/ld+json"

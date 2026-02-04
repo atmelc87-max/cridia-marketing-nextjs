@@ -9,6 +9,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { AnimatedButton } from "./ui/AnimatedButton";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getTranslation } from "@/lib/translations";
+import { trackStartTrialClick } from "@/lib/utils";
 
 export function Header() {
   const router = useRouter();
@@ -170,6 +171,7 @@ export function Header() {
               href="https://hire.cridia.ai/register"
               variant="primary"
               className="whitespace-nowrap"
+              onClick={() => trackStartTrialClick("navbar")}
             >
               {t("nav.startTrial")}
             </AnimatedButton>
@@ -235,6 +237,7 @@ export function Header() {
                 href="https://hire.cridia.ai/register"
                 variant="primary"
                 className="w-full text-center"
+                onClick={() => trackStartTrialClick("navbar_mobile")}
               >
                 {t("nav.startTrial")}
               </AnimatedButton>

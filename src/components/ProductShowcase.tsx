@@ -5,6 +5,7 @@ import Image from "next/image";
 import { SectionTitle } from "./ui/SectionTitle";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getTranslation } from "@/lib/translations";
+import { trackStartTrialClick } from "@/lib/utils";
 
 export function ProductShowcase() {
   const { language } = useLanguage();
@@ -115,6 +116,7 @@ export function ProductShowcase() {
           <a
             href="https://hire.cridia.ai/register"
             className="inline-block glass px-8 py-4 rounded-xl text-white font-semibold hover:bg-white/10 transition-all"
+            onClick={() => trackStartTrialClick("showcase")}
           >
             {t("showcase.cta")}
           </a>

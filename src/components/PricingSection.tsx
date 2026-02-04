@@ -7,6 +7,7 @@ import { SectionTitle } from "./ui/SectionTitle";
 import { AnimatedButton } from "./ui/AnimatedButton";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getTranslation } from "@/lib/translations";
+import { trackStartTrialClick } from "@/lib/utils";
 
 const plans = [
   {
@@ -141,6 +142,7 @@ export function PricingSection() {
                     href="https://hire.cridia.ai/register"
                     variant={plan.popular ? "primary" : "secondary"}
                     className="w-full text-center"
+                    onClick={() => trackStartTrialClick("pricing")}
                   >
                     {t("pricing.startTrial")}
                   </AnimatedButton>

@@ -5,6 +5,7 @@ import { AnimatedButton } from "./ui/AnimatedButton";
 import { Shield, Globe, CreditCard } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getTranslation } from "@/lib/translations";
+import { trackStartTrialClick } from "@/lib/utils";
 
 export function FinalCTA() {
   const { language } = useLanguage();
@@ -37,6 +38,7 @@ export function FinalCTA() {
               href="https://hire.cridia.ai/register"
               variant="primary"
               className="text-lg px-10"
+              onClick={() => trackStartTrialClick("final_cta")}
             >
               {t("finalCta.startTrial")}
             </AnimatedButton>

@@ -5,6 +5,7 @@ import { AnimatedButton } from "./ui/AnimatedButton";
 import { ArrowRight, Play } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getTranslation } from "@/lib/translations";
+import { trackStartTrialClick } from "@/lib/utils";
 
 export function Hero() {
   const { language } = useLanguage();
@@ -91,7 +92,11 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1 }}
           >
-            <AnimatedButton href="https://hire.cridia.ai/register" variant="primary">
+            <AnimatedButton
+              href="https://hire.cridia.ai/register"
+              variant="primary"
+              onClick={() => trackStartTrialClick("hero")}
+            >
               {t("hero.startTrial")}
               <ArrowRight className="inline ml-2" size={20} />
             </AnimatedButton>
